@@ -8,7 +8,7 @@ library(lmerTest)
 library(ggplot2)
 
 #load data for the GA ERP for each presentation
-data <- read.csv('/Volumes/aebusch/aebuschgold/ecesnait/Corenats/2024/Matlab code/Output/subj_level_GA_ERP_lag.csv')
+data <- read.csv('/Users/ecesnaite/Desktop/BuschLab/CORENATS/Output/subj_level_GA_ERP_presentation.csv')
 
 # inspect data
 
@@ -27,13 +27,9 @@ boxplot(data_reduced$Ps)
 
 # Linear models
 
-#remove lag 0 (first presentation of a stimulus) and use lags as continuous variable
-indx_lag_0 <- which(data_reduced$lag==1)
-data_reduced_v2 <- data_reduced[-indx_lag_0,]
+P_model_presentation <- lmer(Ps ~ presentation + (1|subjID), data = data_reduced)
+summary(P_model_presentation)
 
-P_model_lag <- lmer(Ps ~ lag + (1|subjID), data = data_reduced_v2)
-summary(P_model_lag)
-
-F_model_lag <- lmer(Fz ~ lag + (1|subjID), data = data_reduced_v2)
-summary(F_model_lag)
+F_model_presentation <- lmer(Fz ~ presentation + (1|subjID), data = data_reduced)
+summary(F_model_presentation)
 
