@@ -7,7 +7,7 @@ library(paletteer)
 library(tidyverse)
 
 # Paths
-outputDir <- '/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/R/Figures/'
+outputDir <- '/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/'
 
 ## Frontal ##
 #load data
@@ -42,7 +42,7 @@ p1 <- long_frontal %>%
         legend.text = element_text(size = 15), legend.position="top",
         legend.box="horizontal") + ylab(expression(paste(mu,"V"))) +
   #position the legend
-  labs(color = "Nr. times remembered")+
+  labs(color = "Nr. of presentation")+
   guides(col = guide_legend(title.position = "top",title.hjust =0.5)) +
   #add a vertical line for the stimulus presentation onset
   geom_vline(xintercept = 0, linetype="dashed", 

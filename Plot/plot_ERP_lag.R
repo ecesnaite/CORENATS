@@ -7,8 +7,8 @@ library(tidyverse)
 
 ## Frontal ##
 #load data
-ERP_frontal <- read.csv('/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/Matlab code/Output/ERP_lag_frontal.csv')
-ERP_no_time <- ERP_frontal[,-1]
+ERP_frontal <- read.csv('/Users/ecesnaite/Desktop/BuschLab/CORENATS/Output/ERP_lag_frontal.csv')
+ERP_no_time <- ERP_frontal[,c(-1,-2)]
 
 # transform to long format
 long_frontal <- ERP_no_time %>% 
@@ -16,16 +16,16 @@ long_frontal <- ERP_no_time %>%
                names_to = "condition",
                values_to = "value")
 
-long_frontal$time <- rep(ERP_frontal$time, each = 6)
-long_frontal$condition <- as.character(rep(c(0:5), 256)) 
+long_frontal$time <- rep(ERP_frontal$time, each = 5)
+long_frontal$condition <- as.character(rep(c(10,16,24,38,60), 256)) 
 
 #colors
 
 color_lag <- paletteer_c("grDevices::Peach", 5)
-color_lag <- c('#023743FF',color_lag)
+#color_lag <- c('#023743FF',color_lag)
 
 # plot
-tiff("/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/R/Figures/ERP_frontal_lag.png", units="in", width=5, height=3.8, res=150)
+tiff("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/ERP_frontal_lag_no_0.png", units="in", width=5, height=3.8, res=150)
 
 p1 <- long_frontal %>%
   ggplot( aes(x=time, y=value, color=condition)) +
@@ -51,7 +51,7 @@ dev.off()
 ## Parietal ##
 #load data
 ERP_parietal <- read.csv('/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/Matlab code/Output/ERP_lag_parietal.csv')
-ERP_no_time <- ERP_parietal[,-1]
+ERP_no_time <- ERP_parietal[,c(-1,-2)]
 
 # transform to long format
 long_parietal <- ERP_no_time %>% 
@@ -59,10 +59,10 @@ long_parietal <- ERP_no_time %>%
                names_to = "condition",
                values_to = "value")
 
-long_parietal$time <- rep(ERP_parietal$time, each = 6)
+long_parietal$time <- rep(ERP_parietal$time, each = 5)
 
 # plot
-tiff("/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/R/Figures/ERP_parietal_lag.png", units="in", width=5, height=3, res=150)
+tiff("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/ERP_parietal_lag_no_0.png", units="in", width=5, height=3, res=150)
 
 p1 <- long_parietal %>%
   ggplot( aes(x=time, y=value, color=condition)) +

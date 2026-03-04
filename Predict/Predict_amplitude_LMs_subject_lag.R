@@ -1,7 +1,8 @@
 rm(list = ls())
 
 #load data for the GA ERP for each presentation
-data <- read.csv('/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/Matlab code/Output/subj_level_GA_ERP_lag.csv')
+data <- read.csv('/Volumes/aebusch/aebuschgold/ecesnait/Corenats/2024/Matlab code/Output/subj_level_GA_ERP_lag.csv')
+table(data$subjID)
 
 # inspect data
 
@@ -33,11 +34,11 @@ summary(Fz_model_present)
 
 #plot data as boxplots for different presentations
 plot_data <- data_reduced
-plot_data$presentation <- as.factor(plot_data$presentation)
+plot_data$lag <- as.factor(plot_data$lag)
 #plot_data$avg_lag <- as.factor(plot_data$avg_lag)
 
-ggplot(plot_data, aes(x=presentation, y=Fz)) + 
-  geom_boxplot(aes(fill=presentation), alpha=0.6, size = 0.8)+
+ggplot(plot_data, aes(x=lag, y=Fz)) + 
+  geom_boxplot(aes(fill=lag), alpha=0.6, size = 0.8)+
   geom_point(color='black', size = 2, alpha= 0.5)+
   geom_line(aes(group=subjID), size=0.70, alpha = 0.5)
 

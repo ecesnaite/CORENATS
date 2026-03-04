@@ -16,8 +16,6 @@ long_RT <- RT_press %>%
   pivot_longer(cols = colnames(RT_press), 
                names_to = "press",
                values_to = "value")
-RT_model1 <- lm(value ~ press , data = long_RT)
-summary(RT_model1)
 
 color_m <- c('#023743FF', '#72874EFF','#E69F00')#c("#00A087", "#F39B7F", "#8491B4")
 
@@ -49,8 +47,11 @@ long_RT_lag2 <- RT_lag_pres_2 %>%
                names_to = "lag",
                values_to = "value")
 
-RT_model2 <- lm(value ~ lag , data = long_RT_lag2)
-summary(RT_model2)
+indx_rm_v1 <- which(long_RT_lag2$lag == 'V1')
+
+long_RT_lag2_model <- long_RT_lag2[-indx_rm_v1,]
+long_RT_lag2_model$lag <- rep(c(1:5), 31)
+
 #colors
 
 color_lag <- paletteer_c("grDevices::Peach", 5)
@@ -82,8 +83,13 @@ long_RT_lag3 <- RT_lag_pres_3 %>%
   pivot_longer(cols = colnames(RT_lag_pres_3), 
                names_to = "lag",
                values_to = "value")
-RT_model3 <- lm(value ~ lag , data = long_RT_lag3)
-summary(RT_model3)
+
+
+indx_rm_v1 <- which(long_RT_lag3$lag == 'V1')
+
+long_RT_lag3_model <- long_RT_lag3[-indx_rm_v1,]
+long_RT_lag3_model$lag <- rep(c(1:5), 31)
+
 
 # plot
 tiff("/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/R/Figures/RT_lag_3rd_pres.png", units="in", width=4, height=3, res=300)

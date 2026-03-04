@@ -46,7 +46,7 @@ dev.off()
 
 ## Parietal ##
 #load data
-SEM_parietal <- read.csv('/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/Matlab code/Output/SEM_pareital.csv')
+SEM_parietal <- read.csv('/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/Matlab code/Output/SEM_parietal_centroparietal.csv')
 SEM_no_time <- SEM_parietal[,-1]
 
 # transform to long format
@@ -72,8 +72,8 @@ p1 <- long_parietal %>%
                color = "grey", size=1) +
  ylab(expression(paste(mu,"V"))) 
 
-p1 + annotate(geom="text",x=-50, y=3, label="stimulus", color = "#696969",angle = 90, size =5) +
-  annotate(geom="text", x=700, y=10.5, label="LPE", color = "#696969", size =5) +
+p1 + annotate(geom="text",x=-50, y=1, label="stimulus", color = "#696969",angle = 90, size =5) +
+  annotate(geom="text", x=700, y=2.5, label="LPE", color = "#696969", size =5) +
   annotate("rect", xmin = 550, xmax = Inf, ymin = -Inf, ymax = Inf, alpha = .1)
 
 dev.off()

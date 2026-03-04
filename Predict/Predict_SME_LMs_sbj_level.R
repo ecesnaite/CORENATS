@@ -1,7 +1,7 @@
 rm(list = ls())
 
 #load data
-data <- read.csv('/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/Matlab code/Output/subj_level_SEM_CORENATS.csv')
+data <- read.csv('/Volumes/aebusch/aebuschgold/ecesnait/Corenats/2024/Matlab code/Output/subj_level_SEM_CORENATS.csv')
 
 # inspect data
 

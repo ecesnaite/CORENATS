@@ -1,7 +1,7 @@
 rm(list = ls())
 
 #load data
-data <- read.csv('/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/Matlab code/avg_ERPs_lm_CORENATS.csv')
+data <- read.csv('/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/Matlab code/Output/subj_level_GA_ERP_presentation.csv')
 
 # inspect data
 # distribution of the response variables
@@ -27,17 +27,17 @@ hist(data_clean2$Ps)
 # linear models
 library(lme4)
 library(car)
-install.packages('lmerTest')
+#install.packages('lmerTest')
 library(lmerTest)
 library(ggplot2)
 
 # # ---- Fz Models ---- # #
-Fz_model <- lmer(Fz ~ Present_no*lag  + (1|subjID), data = data_clean2)
+Fz_model <- lmer(Fz ~ presentation*lag  + (1|subjID), data = data_clean2)
 summary(Fz_model)
 vif(Fz_model)# high between presentation and lag
 
 # compare reduced models
-Fz_model_presentation <- lmer(Fz ~ Present_no  + (1|subjID), data = data_clean2)
+Fz_model_presentation <- lmer(Fz ~ presentation  + (1|subjID), data = data_clean2)
 summary(Fz_model_presentation)
 
 Fz_model_lag <- lmer(Fz ~ lag  + (1|subjID), data = data_clean2)
@@ -65,7 +65,7 @@ ggplot(plot_data, aes(x=Present_no, y=Fz)) +
   stat_summary(fun=median, geom="line", aes(group=1, colour = 'red'), size = 0.7)  + 
   stat_summary(fun=median, geom="point")
 
-# # ---- PO3-P08 Models ---- # #
+# # ---- P Models ---- # #
 P_model <- lmer(Ps ~ Present_no*lag  + (1|subjID), data = data_clean2)
 summary(P_model)
 vif(Fz_model)# high between presentation and lag
