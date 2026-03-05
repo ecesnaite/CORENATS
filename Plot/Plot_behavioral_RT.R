@@ -70,7 +70,7 @@ long_RT_lag2 %>%
   scale_fill_manual(values = color_lag) +
  theme_bw()+
   theme(legend.position="none",text = element_text(size = 20)) +
- ylab("seconds") + ggtitle("2nd presentation")+ylim(0.5, 1.5)
+ ylab("seconds") +ylim(0.5, 1.5)
 
 dev.off()
 
@@ -97,6 +97,6 @@ long_RT_lag3 %>%
                width = 0.75, size = 1, linetype = "solid")+
   scale_fill_manual(values = color_lag) +
  theme_bw()+
-  theme(legend.position="none",text = element_text(size = 20)) +ylab("seconds") + ggtitle("3rd presentation")+ylim(0.5, 1.5)
+  theme(legend.position="none",text = element_text(size = 20)) +ylab("seconds") +ylim(0.5, 1.5)
 dev.off()
 
