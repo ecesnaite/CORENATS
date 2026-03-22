@@ -31,7 +31,7 @@ cor.test(data_reduced$num_correct, data_reduced$avg_lag)
 data_reduced$num_correct <- as.factor(data_reduced$num_correct)
 
 # # ---- Fz Models ---- # #
-
+# random intercept model
 Fz_model1 <- lmer(Fz ~ num_correct  + (1|subjID), data = data_reduced)
 summary(Fz_model1)
 
