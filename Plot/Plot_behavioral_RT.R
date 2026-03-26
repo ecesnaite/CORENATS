@@ -2,6 +2,7 @@ rm(list = ls())
 
 # Libraries
 #install.packages("paletteer")
+library(svglite)
 library(paletteer)
 library(tidyverse)
 library(viridis)
@@ -22,7 +23,8 @@ long_RT <- RT_press %>%
 color_m <- c('#023743FF', '#72874EFF','#E69F00')#c("#00A087", "#F39B7F", "#8491B4")
 
 # plot
-tiff("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/RT_pres.png", units="in", width=3, height=3, res=300)
+#tiff("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/RT_pres.png", units="in", width=3, height=3, res=300)
+svglite("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/RT_pres.svg", width = 3, height = 3)
 
 long_RT %>%
   ggplot( aes(x=press, y=value, fill=press)) +
@@ -34,10 +36,9 @@ long_RT %>%
   theme(legend.position="none",text = element_text(size = 20)) +
   scale_x_discrete(name ="presentation", 
                    labels=c("RT_pres1" = "1st", "RT_pres2" = "2nd",
-                            "RT_pres3" = "3rd")) + ylab("seconds") + 
-  geom_signif(comparisons = list(c("RT_pres1", "RT_pres3")), map_signif_level=TRUE,y_position = 1.6)+
-  geom_signif(comparisons=list(c("RT_pres1", "RT_pres2")), annotations="n.s.",
-              y_position = 1.4)
+                            "RT_pres3" = "3rd")) + ylab("seconds") 
+ # geom_signif(comparisons = list(c("RT_pres1", "RT_pres3")), map_signif_level=TRUE,y_position = 1.6)+
+  #geom_signif(comparisons=list(c("RT_pres1", "RT_pres2")), annotations="n.s.", y_position = 1.4)
 dev.off()
 
 ## LAGS ##
@@ -60,7 +61,8 @@ color_lag <- paletteer_c("grDevices::Peach", 5)
 #color_lag <- c('#023743FF',color_lag)
 
 # plot
-tiff("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/RT_lag_2nd_pres.png", units="in", width=4, height=3, res=300)
+#tiff("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/RT_lag_2nd_pres.png", units="in", width=4, height=3, res=300)
+svglite("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/RT_lag_2nd_pres.svg", width = 4, height = 3)
 
 long_RT_lag2 %>%
   ggplot( aes(x=lag, y=value, fill=lag)) +
@@ -88,7 +90,8 @@ long_RT_lag3 <- RT_lag_pres_3 %>%
                values_to = "value")
 
 # plot
-tiff("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/RT_lag_3rd_pres.png", units="in", width=4, height=3, res=300)
+#tiff("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/RT_lag_3rd_pres.png", units="in", width=4, height=3, res=300)
+svglite("/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/RT_lag_3rd_pres.svg", width = 4, height = 3)
 
 long_RT_lag3 %>%
   ggplot( aes(x=lag, y=value, fill=lag)) +
