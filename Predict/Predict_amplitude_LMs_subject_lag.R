@@ -2,10 +2,7 @@ rm(list = ls())
 
 # Load libraries
 library(lme4)
-library(car)
-#install.packages('lmerTest')
 library(lmerTest)
-library(ggplot2)
 
 #load data for the GA ERP for each presentation
 data <- read.csv('/Volumes/aebusch/aebuschgold/ecesnait/Corenats/2024/Matlab code/Output/subj_level_GA_ERP_lag.csv')

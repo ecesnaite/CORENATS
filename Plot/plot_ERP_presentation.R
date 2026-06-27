@@ -2,6 +2,7 @@ rm(list = ls())
 
 # Libraries
 #install.packages("paletteer")
+library(svglite)
 library(ggplot2)
 library(paletteer)
 library(tidyverse)
@@ -11,8 +12,8 @@ outputDir <- '/Users/ecesnaite/Desktop/BuschLab/CORENATS/Final_figures/'
 
 ## Frontal ##
 #load data
-ERP_frontal <- read.csv('/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/Matlab code/Output/ERP_present_frontal.csv')
-ERP_no_time <- ERP_frontal[,-1]
+ERP_frontal <- read.csv('/Volumes/aebusch/aebuschgold/ecesnait/Corenats/2024/Matlab code/Output/ERP_present_frontal.csv')
+ERP_no_time <- ERP_frontal[,-1] # remove time information
 
 # transform to long format
 long_frontal <- ERP_no_time %>% 
@@ -29,7 +30,7 @@ colorBlindBlack8  <- c("#000000", "#E69F00", "#56B4E9", "#009E73",
 color_m <- c('#023743FF', '#72874EFF','#E69F00')
 
 # plot
-tiff(paste0(outputDir,'ERP_frontal.png'), units="in", width=5, height=3.8, res=150)
+svglite(paste0(outputDir,'ERP_frontal.svg'), width=5, height=3.8)
 
 p1 <- long_frontal %>%
   ggplot( aes(x=time, y=value, color=condition)) +
@@ -55,12 +56,10 @@ p1 + annotate(geom="text",x=-50, y=-4, label="stimulus", color = "#696969",angle
 
 dev.off()
 
-
-
-## Parietal ##
+## Parietal channels ##
 #load data
-ERP_parietal <- read.csv('/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/Matlab code/Output/ERP_present_parietal.csv')
-ERP_no_time <- ERP_parietal[,-1]
+ERP_parietal <- read.csv('/Volumes/aebusch/aebuschgold/ecesnait/Corenats/2024/Matlab code/Output/ERP_present_parietal.csv')
+ERP_no_time <- ERP_parietal[,-1] # remove time information
 
 # transform to long format
 long_parietal <- ERP_no_time %>% 
@@ -71,7 +70,7 @@ long_parietal <- ERP_no_time %>%
 long_parietal$time <- rep(ERP_parietal$time, each = 3)
 
 # plot
-tiff("/Volumes/aebusch/nbuschgold/ecesnait/Corenats/2024/R/Figures/ERP_parietal.png", units="in", width=5, height=3, res=150)
+svglite(paste0(outputDir,'ERP_parietal.svg'), width=5, height=3)
 
 p1 <- long_parietal %>%
   ggplot( aes(x=time, y=value, color=condition)) +

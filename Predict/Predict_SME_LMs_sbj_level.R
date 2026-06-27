@@ -1,11 +1,9 @@
 rm(list = ls())
 
 # load libraries
-library(lme4)
-library(car)
 #install.packages('lmerTest')
+library(lme4)
 library(lmerTest)
-library(ggplot2)
 
 #load data
 data <- read.csv('/Volumes/aebusch/aebuschgold/ecesnait/Corenats/2024/Matlab code/Output/subj_level_SEM_CORENATS.csv')
@@ -24,9 +22,8 @@ indx_rem_all <- c(indx_rem1,indx_rem)
 data_reduced <- data[-indx_rem_all,]
 boxplot(data_reduced$Fz)
 boxplot(data_reduced$Ps)
-# linear models
 
-cor.test(data_reduced$num_correct, data_reduced$avg_lag)
+# linear models
 
 data_reduced$num_correct <- as.factor(data_reduced$num_correct)
 
@@ -35,6 +32,9 @@ data_reduced$num_correct <- as.factor(data_reduced$num_correct)
 Fz_model1 <- lmer(Fz ~ num_correct  + (1|subjID), data = data_reduced)
 summary(Fz_model1)
 
+# # ---- PO3-P08 Models ---- # #
+P_model1 <- lmer(Ps ~ num_correct + (1|subjID), data = data_reduced)
+summary(P_model1)
 
 ## check mean and median values for each condition to make sure they match with the GA ERP plot
 #indx_0<- which(data_reduced$num_correct==0)
@@ -50,6 +50,3 @@ summary(Fz_model1)
 #mean_two <- mean(data_reduced$Fz[indx_2])
 #median_two <- median(data_reduced$Fz[indx_2])
 
-# # ---- PO3-P08 Models ---- # #
-P_model1 <- lmer(Ps ~ num_correct + (1|subjID), data = data_reduced)
-summary(P_model1)
